@@ -8,7 +8,7 @@ let studentRouter = require('./routes/index').studentRouter
 let lectureRouter = require('./routes/index').lectureRouter
 let courseRouter = require('./routes/index').courseRouter
 let advanceRouter = require('./routes/index').advanceRouter
-const registerRouter = require('./routes/index').registerRouter
+const authRouter = require('./routes/index').authRouter
 let usersRouter = require('./routes/users')
 
 let app = express()
@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/v1/student', studentRouter)
 app.use('/api/v1/course', courseRouter)
 app.use('/api/v1/lecturer', lectureRouter)
-app.use('/api/v1/register', registerRouter)
+app.use('/api/v1/auth', authRouter)
 app.get('/api/v1', (req, res) => {
   res.status(200).send('Hello World')
 })
