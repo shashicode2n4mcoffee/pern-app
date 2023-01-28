@@ -1,16 +1,17 @@
-var createError = require('http-errors')
-var express = require('express')
-var path = require('path')
-var cookieParser = require('cookie-parser')
-var logger = require('morgan')
+let createError = require('http-errors')
+let express = require('express')
+let path = require('path')
+let cookieParser = require('cookie-parser')
+let logger = require('morgan')
 
 let studentRouter = require('./routes/index').studentRouter
 let lectureRouter = require('./routes/index').lectureRouter
 let courseRouter = require('./routes/index').courseRouter
 let advanceRouter = require('./routes/index').advanceRouter
-var usersRouter = require('./routes/users')
+const registerRouter = require('./routes/index').registerRouter
+let usersRouter = require('./routes/users')
 
-var app = express()
+let app = express()
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'))
@@ -26,7 +27,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use('/api/v1/student', studentRouter)
 app.use('/api/v1/course', courseRouter)
 app.use('/api/v1/lecturer', lectureRouter)
-app.use('/api/v1', advanceRouter)
+app.use('/api/v1/register', registerRouter)
+app.get('/api/v1', (req, res) => {
+  res.status(200).send('Hello World')
+})
+// app.use('/api/v1', advanceRouter)
 app.use('/users', usersRouter)
 
 // catch 404 and forward to error handler
