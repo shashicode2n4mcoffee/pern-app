@@ -4,7 +4,6 @@ var path = require('path')
 var cookieParser = require('cookie-parser')
 var logger = require('morgan')
 
-// var indexRouter = require('./routes/index')
 let studentRouter = require('./routes/index').studentRouter
 let lectureRouter = require('./routes/index').lectureRouter
 let courseRouter = require('./routes/index').courseRouter
